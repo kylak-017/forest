@@ -1,25 +1,179 @@
-.start{
-    background-color: rgb(0, 188, 126);
-    width: 100%;
-    height: 100%;
+/* styles/index.css */
 
+#email,
+#move-on-button,
+#start-button,
+#intro,
+#quotes,
+#review-rules,
+#vision,
+#vision-button {
+  display: none;
+  margin-top: 2rem;
 }
 
-#start-button{
-    background-color: azure;
-    padding: 8px 16px;
-    display: block;
-    cursor: pointer;
-    text-decoration: none;
-
-
+/* Center buttons by making them block-level and auto margin */
+#start-button,
+#vision-button,
+#now-start-button,
+#move-on-button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 2rem;
 }
 
-#start-button:hover{
-    background-color: rgb(194, 194, 194) ;
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    padding: 8px 16px;
-    display: block;
-    transition: background-color 0.3s ease; 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Verdana', sans-serif;
+}
+
+body {
+  background: linear-gradient(to top, #0a0f2c, #1a2a4f);
+  color: #e0f7fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* START SCREEN */
+.start {
+  background-color: rgba(15, 25, 58, 0.9);
+  border: 2px solid #5fa8d3;
+  border-radius: 12px;
+  padding: 2rem 3rem;
+  box-shadow: 0 0 12px rgba(93, 136, 185, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.start:hover {
+  transform: scale(1.02);
+}
+
+.start h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #d1ecff;
+}
+
+#start-button,
+#vision-button,
+#now-start-button,
+#move-on-button {
+  background-color: #3c82ff;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.2s;
+}
+
+#start-button:hover,
+#vision-button:hover,
+#now-start-button:hover,
+#move-on-button:hover {
+  background-color: #5fa8d3;
+  transform: translateY(-2px);
+}
+
+#start-button:active,
+#vision-button:active,
+#now-start-button:active,
+#move-on-button:active {
+  transform: scale(0.98);
+  background-color: #2b6cb0;
+}
+
+.review-rules {
+  background-color: rgba(20, 30, 60, 0.85);
+  border: 2px solid #3c82ff;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+  max-width: 700px;
+  width: 90%;
+  color: #cce7ff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.quotes,
+.review-rules h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  color: #cce7ff;
+  text-shadow: 1px 1px #2c4d7f;
+}
+
+.rules {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.rules li {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #3c82ff;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.7rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: background 0.3s ease;
+}
+
+.rules li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.rules li::before {
+  content: "•";
+  color: #3c82ff;
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.rules li::after {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #3c82ff;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}
+
+.rules li:hover::after {
+  background-color: #5fa8d3;
+}
+
+.quotes,
+.review-rules,
+.review-day {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 600px;
+  min-height: 100px;
+  border-radius: 8px;
+  text-align: center;
+  padding: 1rem;
+}
+
+.container-image {
+  margin-top: 2rem;
+  width: 100%;
+  border-radius: 8px;
+  align-items: center;
+  padding: 1rem;
+  color: #cce7ff;
+  display: flex;
+  flex-direction: column;
 }

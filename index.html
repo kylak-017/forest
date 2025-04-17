@@ -3,32 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/styles/index.css">
+    <link rel="stylesheet" type="text/css" href="/pages/styles/index.css">
     <title>Three.js App</title>
 </head>
 
 <body>
-    <div class = "start">
-        <h1>Welcome! Ready to crush it?</h1>
-        <button id = "start-button"> Start Day </button>
+    <div id = "email" class = "start">
+        <h1> Welcome! </h1>
+        <input type = "text" id = "email-input" placeholder = "Enter your email">
+        <button id = "move-on-button" class =  "buttons"> Log In/Sign In </button>
     </div>
 
-    <div class = "quotes">
+    <div id = "intro" class = "start">
+        <h1>Good Morning! Ready to crush it?</h1>
+        <button id = "start-button" class =  "buttons"> Start Day With A Quote </button>
+    </div>
+
+    <div id = "quotes" class = "quotes">
+        
+       
+    </div>
+
+    
+    <div id = "review-rules" class = "review-rules">
+        <h1>Review the rules</h1>
+        <div class = "rules">
+            <li>1. No distractions. Instagram is only allowed on SDG#18/OLM posting schedules on Sunday.</li>
+            <li>2. Parkinson's Law: The more time you give a task, the more you will spend on that respective task. Lock in and finish it. Then rest properly. </li>
+            <li>3. You can have a bath at the end of the day. Relaxing music to just relax and reflect. </li>
+            <li>4. No overeating during study periods. </li>
+            <li>5. 3 max tasks per day for now. 5 later on. MAX DEDICATION to these.</li>
+            <li>6. Follow the break schedule. Do lifting, running, boxing, sinning, dancing, nothing else.</li>
+        </div>
 
     </div>
 
-    <div class = "review-rules">
+    <div id = "vision" class = "review-day">
+
+        <button id = "vision-button"> Remind Me Of My Vision & My Plan </button>
 
     </div>
 
-    <div class = "review-day">
 
-    </div>
-
-
-
+    <script type="module" src = "/pages/setupDay.js"></script>
+    <script type="module" src = "/pages/forest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
 </body>
-<script type = "module" src = "/pages/setupDay.js"></script>
-<script type="module" src = "/pages/forest.js"></script>
+
 </html>

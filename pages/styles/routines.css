@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#p1, #p2, #p3, #p4, #p5,#p6{
+  position: absolute;
+  display: inline-block;
+  align-items: left;
+  align-content: left;
+  justify-content: left;
+  text-align: left;
+  left: 25px;
+  width: 100%;
+  color:black;
+  margin-bottom: 3rem;
+  height: 0;
+  z-index: 1;
+}
+
+#st-1 , #st-2 , #st-3 , #st-4 , #st-5 , #st-6 , #st-7 , #st-8 , #st-9 , #st-10 , #two-st-1, #two-st-2, #two-st-3, #two-st-4, #two-st-5, #two-st-6, #two-st-7, #two-st-8, #two-st-9, #two-st-10 , #three-st-1, #three-st-2, #three-st-3, #three-st-4, #three-st-5, #three-st-6, #three-st-7, #three-st-8, #three-st-9, #three-st-10 , #four-st-1, #four-st-2, #four-st-3, #four-st-4, #four-st-5, #four-st-6, #four-st-7, #four-st-8, #four-st-9, #four-st-10 , #five-st-1 , #five-st-2 , #five-st-3 , #five-st-4 , #five-st-5 , #five-st-6 , #five-st-7 , #five-st-8 , #five-st-9 , #five-st-10 , #six-st-1 , #six-st-2 , #six-st-3 , #six-st-4 , #six-st-5 , #six-st-6 , #six-st-7 , #six-st-8 , #six-st-9 , #six-st-10 {
+  display: none;
+  display: inline-block;
+  align-items: left;
+  align-content: left;
+  justify-content: left;
+  margin-top: 2rem;
+  text-align: left;
+  margin-left: 2rem;
+  margin-bottom: 0.2rem;
+
+}
+
+body {
+  font-family: sans-serif;
+  background: linear-gradient(to top, #0a0f2c, #1a2a4f);
+  color: #e0f7fa;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background-color: rgba(15, 25, 58, 0.9);
+  border: 2px solid #5fa8d3;
+  border-radius: 12px;
+  padding: 2rem 3rem;
+  box-shadow: 0 0 12px rgba(93, 136, 185, 0.2);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.timeline-container {
+  position: relative;
+  width: 350px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.timeline-track {
+  position: relative;
+  width: 10px;
+  height: 100vh;
+  background-color: #253555;
+  margin: 0 auto;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#timeline-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 10px;
+  height: 340px;
+  width: 30px;
+  background: linear-gradient(green, red);
+  transform: scaleY(0);
+  transform-origin: top center;
+  animation: 'none';
+  border-radius: 20px;
+  margin-right: 5rem;
+}
+
+@keyframes growTimeline {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+
+.timeline-progress {
+  position: absolute;
+  left: 25px;
+  width: 2px;
+  background-color: #3c82ff;
+  height: 0;
+  z-index: 1;
+}
+
+.timeline-event {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+  margin-bottom: 1.5rem;
+}
+
+.event-icon {
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 50%;
+  border: 2px solid #445a8c;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+  position: relative;
+  top: -0.25rem;
+  z-index: 2;
+  color: #1a2a4f;
+  margin-left: 2rem;
+}
+
+.timeline-event.completed .event-icon {
+  border-color: #82aaff;
+  color: #82aaff;
+  align-items: center;
+}
+
+#timeline-event-1,
+#timeline-event-2,
+#timeline-event-3,
+#timeline-event-4 {
+  margin: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+  margin-bottom: 1.5rem;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  float: left;
+}
+
+.event-time {
+  font-size: 0.9rem;
+  color: #a5bce2;
+}
+
+.event-title {
+  font-weight: bold;
+  color: #e0f7fa;
+}
+
+.event-checkbox {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  left: 3rem;
+}
+
+.event-checkmark {
+  font-size: 1rem;
+  color: #82aaff;
+  margin-top: 0.25rem;
+  align-items: center;
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #445a8c;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  margin-left: 3rem;
+}
+
+.timeline-event:not(.completed) .event-checkmark {
+  visibility: hidden;
+  align-items: center;
+}
+
+.setup-tasks {
+  margin: 0 auto;
+  padding: 4rem 0;
+  width: 100%;
+  max-width: 60rem;
+}
+
+.subtasks-add {
+  margin: auto;
+}
+
+.st-inp, .st-add {
+  float: left;
+  margin-left: 2rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #445a8c;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #1a2a4f;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+
+.subtasks {
+  margin-top: 2rem;
+  background-color: #ace0fc;
+  border-color: white;
+  color: #1b2d1a;
+  font-weight: bold;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.2s;
+  align-self: center;
+}
+
+#task-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#subtask-label, #priority-label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+
+#task-num, #priority {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: #ace0fc;
+  color: #1b2d1a;
+  font-weight: bold;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.2s;
+}
+
+#task{
+  margin-top: 1rem;
+}
+
+#st-show, #st-show2, #st-show3, #st-show4, #st-show5, #st-show6, #st-show7, #st-show8, #st-show9, #st-show10 {
+  margin-left: auto;
+  display: block;
+  margin-top: 1rem;
+  background-color: #ace0fc;
+  color: #1b2d1a;
+  font-weight: bold;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Time-Based Timeline UI</title>
+  <link rel="stylesheet" href="/pages/styles/routines.css" />
+</head>
+<body>
+
+<div class="timeline-container">
+  <!-- The vertical timeline line & progress fill -->
+  <div class="timeline-line" id = "timeline-line"></div>
+  <div id="timeline-progress" class="timeline-progress"></div>
+
+  <!-- Task list (you can generate these dynamically in JS or a framework) -->
+  <div class="timeline-event completed" id = "timeline-event-1">
+    <div class="event-icon">☀️</div>
+    <div class="event-details">
+      <div class="event-time">4:00 - 4:05</div>
+      <div class="event-title">Rise and Shine</div>
+    </div>
+    <div class="event-checkbox">
+      <input type="checkbox" class="event-checkmark" id = "first">
+    </div>
+  </div>
+
+  <div class="timeline-event completed" id = "timeline-event-2">
+    <div class="event-icon">☕️</div>
+    <div class="event-details">
+      <div class="event-time">4:06 - 4:10</div>
+      <div class="event-title">Wash Face + Lotion + Water</div>
+    </div>
+    <div class="event-checkbox">
+      <input type="checkbox" class="event-checkmark" id = "second">
+    </div>
+  </div>
+
+  <div class="timeline-event completed" id = "timeline-event-3">
+    <div class="event-icon">🧘‍♂️</div>
+    <div class="event-details">
+      <div class="event-time">4:11 - 4:15</div>
+      <div class="event-title">Brainstorm Tasks/ Get It Ready</div>
+    </div>
+    <div class="event-checkbox">
+      <input type="checkbox" class="event-checkmark" id = "third">
+    </div>
+  </div>
+
+  <div class="timeline-event completed" id = "timeline-event-4">
+    <div class="event-icon">📞</div>
+    <div class="event-details">
+      <div class="event-time">4:15 - 4:20</div>
+      <div class="event-title">20 Push Ups + 10 Bicep Curls (ES) + 10 Lateral Raises (ES) </div>
+    </div>
+    <div class="event-checkbox">
+      <input type="checkbox" class="event-checkmark" id = "fourth">
+    </div>
+  </div>
+
+
+<div class = "setup-tasks">
+  <form id = "task-form">
+    <div>
+      <label for="task">Add a new task:</label>
+      <input type="text" id="task" name="task">
+    </div>
+
+    <div>
+      <label for="priority" id = "priority-label">Add priority:</label>
+      <select id="priority" name="priority">
+        <option value="p1">P1</option>
+        <option value="p2">P2</option>
+        <option value="p3">P3</option>
+        <option value="p4">P4</option>
+        <option value="p5">P5</option>
+        <option value="p6">P6</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="time" id = "time-label">Add time needed:</label>
+      <input type="text" id="time" name="time" placeholder="How many 60-minute" >
+    </div>
+
+    <button type="submit" class = "subtasks" id = "add-task-btn">Add Task</button>
+
+    <div id="subtasks">
+      <label for="subtask-type" id = "subtask-label">Add subtasks for:</label>
+      <select id="task-num" name="subtask-type">
+        <option value="p1">P1</option>
+        <option value="p2">P2</option>
+        <option value="p3">P3</option>
+        <option value="p4">P4</option>
+        <option value="p5">P5</option>
+        <option value="p6">P6</option>
+      </select>
+
+
+
+      <div id = "subtasks-add">
+        <div id = "st-inp">
+          <input type="text" id="subtask" name="subtask">
+        </div> 
+  
+        <div id = "st-add">
+          <button class="subtasks" id = "add-sub-btn">Add Subtasks</button>
+        </div>
+
+      </div>
+
+   
+      
+
+    </div>
+
+    
+
+    
+  </form>
+</div>
+
+<div>
+  <div id="st-show">
+    <h2 id="p1"> </h2>
+    <ul>
+      <li id="st-1"></li>
+      <li id="st-2"></li>
+      <li id="st-3"></li>
+      <li id="st-4"></li>
+      <li id="st-5"></li>
+      <li id="st-6"></li>
+      <li id="st-7"></li>
+      <li id="st-8"></li>
+      <li id="st-9"></li>
+      <li id="st-10"></li>
+    </ul>
+  </div>
+  
+  <div id="st-show2">
+    <h2 id="p2"> </h2>
+    <ul>
+      <li id="two-st-1"></li>
+      <li id="two-st-2"></li>
+      <li id="two-st-3"></li>
+      <li id="two-st-4"></li>
+      <li id="two-st-5"></li>
+      <li id="two-st-6"></li>
+      <li id="two-st-7"></li>
+      <li id="two-st-8"></li>
+      <li id="two-st-9"></li>
+      <li id="two-st-10"></li>
+    </ul>
+  </div>
+  
+  <div id="st-show3">
+    <h2 id="p3"> </h2>
+    <ul>
+      <li id="three-st-1"></li>
+      <li id="three-st-2"></li>
+      <li id="three-st-3"></li>
+      <li id="three-st-4"></li>
+      <li id="three-st-5"></li>
+      <li id="three-st-6"></li>
+      <li id="three-st-7"></li>
+      <li id="three-st-8"></li>
+      <li id="three-st-9"></li>
+      <li id="three-st-10"></li>
+    </ul>
+  </div>
+  
+  <div id="st-show4">
+    <h2 id="p4"> </h2>
+    <ul>
+      <li id="four-st-1"></li>
+      <li id="four-st-2"></li>
+      <li id="four-st-3"></li>
+      <li id="four-st-4"></li>
+      <li id="four-st-5"></li>
+      <li id="four-st-6"></li>
+      <li id="four-st-7"></li>
+      <li id="four-st-8"></li>
+      <li id="four-st-9"></li>
+      <li id="four-st-10"></li>
+    </ul>
+  </div>
+  
+  <div id="st-show5">
+    <h2 id="p5"> </h2>
+    <ul>
+      <li id="five-st-1"></li>
+      <li id="five-st-2"></li>
+      <li id="five-st-3"></li>
+      <li id="five-st-4"></li>
+      <li id="five-st-5"></li>
+      <li id="five-st-6"></li>
+      <li id="five-st-7"></li>
+      <li id="five-st-8"></li>
+      <li id="five-st-9"></li>
+      <li id="five-st-10"></li>
+    </ul>
+  </div>
+  
+  <div id="st-show6">
+    <h2 id="p6"> </h2>
+    <ul>
+      <li id="six-st-1"></li>
+      <li id="six-st-2"></li>
+      <li id="six-st-3"></li>
+      <li id="six-st-4"></li>
+      <li id="six-st-5"></li>
+      <li id="six-st-6"></li>
+      <li id="six-st-7"></li>
+      <li id="six-st-8"></li>
+      <li id="six-st-9"></li>
+      <li id="six-st-10"></li>
+    </ul>
+  </div>
+  
+
+</div>
+
+<script type = "module" src="/pages/morningRoutine.js"></script>
+</body>
+</html>

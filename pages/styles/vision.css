@@ -1,0 +1,146 @@
+/* vision.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Verdana', sans-serif;
+}
+
+body {
+    background: linear-gradient(to top, #213044, #2c3e55);
+    color: #e6f0fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.start {
+    background-color: rgba(28, 44, 63, 0.9);
+    border: 2px solid #5fa8d3;
+    border-radius: 12px;
+    padding: 2rem 3rem;
+    box-shadow: 0 0 12px rgba(93, 136, 185, 0.3);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.start:hover {
+    transform: scale(1.02);
+}
+
+.start h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #cfe9ff;
+}
+
+#start-button,
+#vision-button,
+#now-start-button,
+#move-on-button {
+    background-color: #5fa8d3;
+    color: #102437;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.2s;
+    display: block;
+    margin: 0 auto;
+}
+
+#start-button:hover,
+#vision-button:hover,
+#now-start-button:hover,
+#move-on-button:hover {
+    background-color: #7cb9df;
+    transform: translateY(-2px);
+}
+
+#start-button:active,
+#vision-button:active,
+#now-start-button:active,
+#move-on-button:active {
+    transform: scale(0.98);
+    background-color: #4d93bd;
+}
+
+.review-rules {
+    background-color: rgba(35, 50, 73, 0.9);
+    border: 2px solid #7cb9df;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+    max-width: 700px;
+    width: 90%;
+    color: #e6f0fa;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.quotes,
+.review-rules h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    color: #d0ecff;
+    text-shadow: 1px 1px #2a405c;
+}
+
+.rules {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.rules li {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #7cb9df;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.7rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: background 0.3s ease;
+}
+
+.rules li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.rules li::before {
+    content: "\2022";
+    color: #7cb9df;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.rules li::after {
+    content: "";
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #7cb9df;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+}
+
+.rules li:hover::after {
+    background-color: #9cd1f5;
+}
+
+.container-image {
+    margin-top: 2rem;
+    width: 100%;
+    border-radius: 8px;
+    align-items: center;
+    padding: 1rem;
+    color: #e6f0fa;
+    display: flex;
+    flex-direction: column;
+}
