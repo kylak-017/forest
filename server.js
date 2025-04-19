@@ -367,13 +367,14 @@ app.patch('/users/:id/add-streak', async (req, res) => {
   app.patch('/users/:id/burn-tree', async (req, res) => {
     const userId = req.params.id; //defines the userId as the actual id used in the doc
     const email = req.body.email;
+    const burntDegree = req.body.treeBurn;
     
     console.log("recieved the follwing", userId)
     try {
       const updatedUser = await users.findByIdAndUpdate(
         userId,
         {
-          $inc: { burned: 1, trees: -1 }, // Increment the burned count by 1 and decrement the trees count by 1 0.1 burn rate. 0.2 burn rate and so on
+          $inc: { burned: burntDegree }, // Increment the burned count by 1 and decrement the trees count by 1 0.1 burn rate. 0.2 burn rate and so on
         }, // Increment the streak by 1
         { new: true, runValidators: true }
       );

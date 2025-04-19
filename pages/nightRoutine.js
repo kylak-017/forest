@@ -109,34 +109,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     //Grid
-    const grid  = document.getElementById("forest-grid");
+    const grid  = document.getElementById("grid");
     const modal = document.getElementById("modal");
-    const fireTimer = document.getElementById("stop-fire");
-    const rows = 5;
-    const columns = 7;
+    const totalTrees = 7 * 4; //total month
+
     const stopBurnTree = document.getElementById("burn-tree-btn");
-    const burnMap = [];
-
-
-    function loadForest(burnMap = []){
-        grid.innerHTML = '';     
-        for (let i = 0; i < rows; i++) {      
-            for (let j = 0; j < columns; j++) {
-                const idx = i * columns + j;
-                const tile = document.createElement('div');
-                tile.classList.add('tree'); //inserting the tree into the grid as it traverses the array
-                if (burnMap.includes(idx)) tile.classList.add('burnt');
-                grid.appendChild(tile);
-
-
-            }
-            
-            
-      
-        }
-    }
-
-    
 
 
     //Timer IN-APP
@@ -173,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
-    async function pointSystem(block, index) {
+    async function pointSystem(block) {
         const find_user = await fetch ('http://localhost:3200/user-id', { //getting the user document to change forest status
             method: 'POST',
             headers: {
@@ -194,45 +171,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (totalTime < calculateTime(nowTime)) {  //if the elapsed time is greater than the time that you should be taking to finish the routine at that particular check point
             console.log("You have not completed the task in time");
-            
-            loadForest(burnMap);
-            modal.classList.add('open');
-            burnMap.push(index);        // burn immediately
-        
-            const deadline   = Date.now() + 60000;      // 60 s
 
-            stopBurnTree.addEventListener('click', () => {
-                clearInterval(intervalId);
-                modal.classList.remove('open');
-                });
-
-
-            const intervalId = setInterval(async () => {
-            const distance = deadline - Date.now();   // ms left
-            const seconds  = Math.max(0, Math.floor(distance / 1000));
-            fireTimer.textContent = seconds + 's';
-
-            // decide burn level
-            let burnLevel = 0;
-            if (seconds <= 15)      burnLevel = 1.00;
-            else if (seconds <= 30) burnLevel = 0.75;
-            else if (seconds <= 45) burnLevel = 0.50;
-            else                    burnLevel = 0.25;
-
-            // send to server once per tick (or throttle)
-            await fetch(`/users/${userId}/burn-tree`, {
+            const burn_tree = await fetch (`http://localhost:3200/users/${userId}/burn-tree`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: emailValue, treeBurn: burnLevel })
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: emailValue,
+                })
             });
 
-            if (seconds === 0) {
-                clearInterval(intervalId);
-                fireTimer.textContent = '100% BURNT!';
-            }
-            }, 1000);
+            console.log("tree is burning!")
 
-           
+            modal.classList.add("open");
+            
+            stopBurnTree.addEventListener("click", () => {
+                modal.classList.remove("open");
+            })
+             
         }
     }
     
@@ -807,9 +764,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             if (!firstTask.checked) {
                 console.log("firstTask not completed in time. Burning tree...");
-                const calcIndex = moment().format('DD/MM/YYYY');
-                const index = calcIndex.split("/")[0] -1;
-                pointSystem(block_1.duration, index); // You can pass block_1.duration or just 1
+                pointSystem(block_1.duration); // You can pass block_1.duration or just 1
             }
         }, block_1.duration * 1000); // Convert seconds to millisecond
     
@@ -867,9 +822,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             if (!secondTask.checked) {
                 console.log("firstTask not completed in time. Burning tree...");
-                const calcIndex = moment().format('DD/MM/YYYY');
-                const index = calcIndex.split("/")[0] -1;
-                pointSystem(block_2.duration, index); // You can pass block_1.duration or just 1
+                pointSystem(block_2.duration); // You can pass block_1.duration or just 1
             }
         }, block_2.duration * 1000); // Convert seconds to millisecond
     
@@ -928,9 +881,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             if (!thirdTask.checked) {
                 console.log("firstTask not completed in time. Burning tree...");
-                const calcIndex = moment().format('DD/MM/YYYY');
-                const index = calcIndex.split("/")[0] -1;
-                pointSystem(block_3.duration, index); // You can pass block_1.duration or just add
+                pointSystem(block_3.duration); // You can pass block_1.duration or just add
             }
         }, block_3.duration * 1000); // Convert seconds to millisecond
     
@@ -993,9 +944,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             if (!fourthTask.checked) {
                 console.log("firstTask not completed in time. Burning tree...");
-                const calcIndex = moment().format('DD/MM/YYYY');
-                const index = calcIndex.split("/")[0] -1;
-                pointSystem(block_4.duration, index); // You can pass block_1.duration or just 1
+                pointSystem(block_4.duration); // You can pass block_1.duration or just 1
             }
         }, block_4.duration * 1000); // Convert seconds to millisecond
     
@@ -1003,6 +952,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
   
-    
+
     });
   

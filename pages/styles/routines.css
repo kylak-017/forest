@@ -344,7 +344,7 @@ form {
 
 }
 
-#tree-title { 
+#tree-title, #tree-subtitle { 
   margin: 0;
   color: white;
 }
@@ -352,18 +352,19 @@ form {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(5, 80px);
   grid-gap: 10px;
-  justify-content: center;
+  /* As many 70 px columns as fit */
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  justify-items: center;
   margin-top: 20px;
 }
 
 .tree {
-  width: 80px;
-  height: 80px;
-  background-image: url('/pages/resources/tree.png'); /* Replace with your tree sprite */
-  background-size: cover;
-  transition: filter 0.4s ease;
+  width: 70px;          /* <— adjust to taste */
+  height: 70px;
+  background: url("/pages/resources/tree.png") center / cover no-repeat;
+  transition: filter .3s ease;
+  cursor: pointer;
 }
 
 .tree.burnt {

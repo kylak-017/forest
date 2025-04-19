@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Time-Based Timeline UI</title>
   <link rel="stylesheet" href="/pages/styles/routines.css" />
+  <link rel="icon" type="image/x-icon" href="/pages/resources/favicon.ico">
 </head>
 <body>
 
@@ -62,7 +63,15 @@
 <div class = "modal" id = "modal">
   <div class = "modal-content">
     <h2 id = "tree-title">Oh No! Your Trees 🌳 Are Burning 🔥</h2>
+    <h3 id = "tree-subtitle">You have 60 seconds to stop the fire! </h3>
+    <li>~15s = 25% Burn</li>
+    <li>~30s = 50% Burn</li>
+    <li>~45s = 75% Burn</li>
+    <li>~60s = 100% Burn</li>
     <div class = "grid" id = "forest-grid"></div>
+
+    <p id = "stop-fire"></p>
+
     <button class = "subtasks" id = "burn-tree-btn"> I'm Back On Track! </button>
   </div>
 </div>
