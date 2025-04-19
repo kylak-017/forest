@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const thirdTask = document.getElementById("third");
     const fourthTask = document.getElementById("fourth");
 
+    const firstTime = document.getElementById("time-1");
+    const secondTime = document.getElementById("time-2");
+    const thirdTime = document.getElementById("time-3");
+    const fourthTime = document.getElementById("time-4");
+
     const priorityOfTask = document.getElementById("priority");
     const timeofTask = document.getElementById("time");
     const addSubTaskFor = document.getElementById("task-num");
@@ -96,22 +101,62 @@ document.addEventListener('DOMContentLoaded', function() {
     const showSubTask6_9 = document.getElementById("six-st-9");
     const showSubTask6_10 = document.getElementById("six-st-10");
 
+    //Grid
+    const grid  = document.getElementById("grid");
+    const modal = document.getElementById("modal");
+    const totalTrees = 7 * 4; //total month
+
+    const stopBurnTree = document.getElementById("burn-tree-btn");
+
 
     //Timer IN-APP
+    let totalTime = 0;
     const startTime = Date.now();
     console.log(startTime);
 
 
-    function calculateTime() {
-        const nowTime = Date.now();
+    function calculateTime(nowTime) {
         const inSeconds = Math.floor((nowTime- startTime) / 1000);
 
         return inSeconds;
 
     };
 
-    console.log(calculateTime());
+    const nowTime = Date.now();
 
+    console.log(calculateTime(nowTime));
+
+    function getDurationInSeconds(timeRange) {
+        const [start, end] = timeRange.split(" - ");
+        
+        const starth = Number(start.split(":")[0]) * 3600;
+        const startm = Number(start.split(":")[1]) * 60;
+        
+        const endh = Number(end.split(":")[0]) * 3600;
+        const endm = Number(end.split(":")[1]) * 60;
+    
+        return {
+            start: starth + startm,
+            end: endh + endm,
+            duration: (endh + endm) - (starth + startm)
+        };
+    }
+    
+    const arr_1 = firstTime.textContent;   // "4:00 - 4:06"
+    const arr_2 = secondTime.textContent;  // "4:06 - 4:12"
+    const arr_3 = thirdTime.textContent;   // "4:12 - 4:18"
+    const arr_4 = fourthTime.textContent;  // "4:18 - 4:24"
+    
+    const block_1 = getDurationInSeconds(arr_1);
+    const block_2 = getDurationInSeconds(arr_2);
+    const block_3 = getDurationInSeconds(arr_3);
+    const block_4 = getDurationInSeconds(arr_4);
+    
+    console.log("Block 1:", block_1);
+    console.log("Block 2:", block_2);
+    console.log("Block 3:", block_3);
+    console.log("Block 4:", block_4);
+    
 
 
 
@@ -524,6 +569,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     }
 
+
     timelineLine.style.animation = 'growTimeline 30s forwards ease-in-out';
 
     try{
@@ -655,9 +701,52 @@ document.addEventListener('DOMContentLoaded', function() {
             firstTask.checked = true;
             firstTask.style.backgroundColor = "green";
 
+            
+
             const responseOk = await changeHabit1.json();
             if (responseOk.ok){
             console.log("changed succesffully");
+
+            const find_user = await fetch ('http://localhost:3200/user-id', { //getting the user document to change forest status
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: emailValue,
+                })
+            });
+
+            const responseUser = await find_user.json();
+            const userId = responseUser.userId;
+
+            const nowTime = Date.now();
+            console.log(calculateTime(nowTime));
+            totalTime = totalTime + block_1;
+            
+
+            if (totalTime < calculateTime(nowTime)) {  //if the elapsed time is greater than the time that you should be taking to finish the routine at that particular check point
+                console.log("You have not completed the task in time");
+
+                const burn_tree = await fetch (`http://localhost:3200/users/${userId}/burn-tree`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: emailValue,
+                    })
+                });
+
+                console.log("tree is burning!")
+
+                modal.classList.add("open");
+                
+                stopBurnTree.addEventListener("click", () => {
+                    modal.classList.remove("open");
+                })
+                 
+            }
         }
 
         } catch (error) {
@@ -707,6 +796,46 @@ document.addEventListener('DOMContentLoaded', function() {
             const responseOk = await changeHabit2.json();
             if (responseOk.ok){
             console.log("changed succesffully");
+            const find_user = await fetch ('http://localhost:3200/user-id', { //getting the user document to change forest status
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: emailValue,
+                })
+            });
+
+            const responseUser = await find_user.json();
+            const userId = responseUser.userId;
+
+            const nowTime = Date.now();
+            console.log(calculateTime(nowTime));
+            totalTime = totalTime + block_2;
+            
+
+            if (totalTime < calculateTime(nowTime)) {  //if the elapsed time is greater than the time that you should be taking to finish the routine at that particular check point
+                console.log("You have not completed the task in time");
+
+                const burn_tree = await fetch (`http://localhost:3200/users/${userId}/burn-tree`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: emailValue,
+                    })
+                });
+
+                console.log("tree is burning!")
+
+                modal.classList.add("open");
+                
+                stopBurnTree.addEventListener("click", () => {
+                    modal.classList.remove("open");
+                })
+                 
+            }
         }
 
         } catch (error) {
@@ -756,6 +885,47 @@ document.addEventListener('DOMContentLoaded', function() {
             const responseOk = await changeHabit3.json();
             if (responseOk.ok){
             console.log("changed succesffully");
+
+            const find_user = await fetch ('http://localhost:3200/user-id', { //getting the user document to change forest status
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: emailValue,
+                })
+            });
+
+            const responseUser = await find_user.json();
+            const userId = responseUser.userId;
+
+            const nowTime = Date.now();
+            console.log(calculateTime(nowTime));
+            totalTime = totalTime + block_3;
+            
+
+            if (totalTime < calculateTime(nowTime)) {  //if the elapsed time is greater than the time that you should be taking to finish the routine at that particular check point
+                console.log("You have not completed the task in time");
+
+                const burn_tree = await fetch (`http://localhost:3200/users/${userId}/burn-tree`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: emailValue,
+                    })
+                });
+
+                console.log("tree is burning!")
+
+                modal.classList.add("open");
+                
+                stopBurnTree.addEventListener("click", () => {
+                    modal.classList.remove("open");
+                })
+                 
+            }
         }
 
         } catch (error) {
@@ -804,6 +974,47 @@ document.addEventListener('DOMContentLoaded', function() {
             const responseOk = await changeHabit4.json();
             if (responseOk.ok){
             console.log("changed succesffully");
+
+            const find_user = await fetch ('http://localhost:3200/user-id', { //getting the user document to change forest status
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: emailValue,
+                })
+            });
+
+            const responseUser = await find_user.json();
+            const userId = responseUser.userId;
+
+            const nowTime = Date.now();
+            console.log(calculateTime(nowTime));
+            totalTime = totalTime + block_4;
+            
+
+            if (totalTime < calculateTime(nowTime)) {  //if the elapsed time is greater than the time that you should be taking to finish the routine at that particular check point
+                console.log("You have not completed the task in time");
+
+                const burn_tree = await fetch (`http://localhost:3200/users/${userId}/burn-tree`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: emailValue,
+                    })
+                });
+
+                console.log("tree is burning!")
+
+                modal.classList.add("open");
+                
+                stopBurnTree.addEventListener("click", () => {
+                    modal.classList.remove("open");
+                })
+                 
+            }
         }
 
         } catch (error) {

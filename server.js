@@ -76,7 +76,7 @@ const RewardSchema = new mongoose.Schema({
 const TreeSchema = new mongoose.Schema({
     email: String,
     treeType: String,
-    life: Number,
+    color: Number,
     burnt: Boolean, //if life is below a certaib threshold, we can turn burnt to true
 });
 
@@ -85,7 +85,9 @@ const UserSchema = new mongoose.Schema({
     streak: Number,
     completedTasks: Number,
     priority: Number,
-    completed: Boolean
+    completed: Boolean,
+    trees: Number,
+    burned: Number,
 });
 
 const DaySchema = new mongoose.Schema({
@@ -359,6 +361,28 @@ app.patch('/users/:id/add-streak', async (req, res) => {
       res.status(201).send(updatedTask);
     } catch (err) {
       res.status(400).json({ error: 'Failed to update task', details: err });
+    }
+  });
+
+  app.patch('/users/:id/burn-tree', async (req, res) => {
+    const userId = req.params.id; //defines the userId as the actual id used in the doc
+    const email = req.body.email;
+    
+    console.log("recieved the follwing", userId)
+    try {
+      const updatedUser = await users.findByIdAndUpdate(
+        userId,
+        {
+          $inc: { burned: 1, trees: -1 }, // Increment the burned count by 1 and decrement the trees count by 1 0.1 burn rate. 0.2 burn rate and so on
+        }, // Increment the streak by 1
+        { new: true, runValidators: true }
+      );
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json(updatedUser);
+    } catch (err) {
+      res.status(400).json({ error: 'Failed to update user', details: err });
     }
   });
 
